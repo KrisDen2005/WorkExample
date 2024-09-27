@@ -41,8 +41,12 @@ public class FileList {
 
 
     public static void main(String[] args) {
-        FileList fileList = new FileList();
-
+       String path="D:\\老师项目\\liang\\OPS\\xhtml";
+       FileList fileList = new FileList();
+        List<String> xhtmlFile = fileList.getXhtmlFile(path);
+        for (String s : xhtmlFile) {
+            System.out.println(s);
+        }
 
 
     }
