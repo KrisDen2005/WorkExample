@@ -23,12 +23,17 @@ public class WorkController {
 
     @GetMapping("/writeExal")
     @ResponseBody
-    public  void  WriteExal(@RequestParam String fileName){
-        excelWriter.WriteExal(fileName);
+    public  void  WriteExal(@RequestParam (required = false , defaultValue = "D:\\Excel\\work1")String fileName){//路径
+
+        try {
+            excelWriter.WriteExal(fileName);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     @GetMapping("/json")
     @ResponseBody
-    public  List<IframeBean>  JSON(@RequestParam(required = false , defaultValue = "D:\\老师项目\\liang\\OPS\\xhtml") String targetpath){
+    public  List<IframeBean>  JSON(@RequestParam(required = false , defaultValue = "D:\\xtmlWork\\xhtml") String targetpath){
         try {
            return  getHtmlIframe.getIframeBeans(targetpath);
 
@@ -39,7 +44,7 @@ public class WorkController {
     }
     @ResponseBody
     @GetMapping("/html")
-    public String getHtml(@RequestParam(required = false , defaultValue = "D:\\老师项目\\liang\\OPS\\xhtml")String targetpath){
+    public String getHtml(@RequestParam(required = false , defaultValue = "D:\\xtmlWork\\xhtml")String targetpath){
         String xhtml ;
         try {
             xhtml = getXhtml.getXhtml(targetpath);
