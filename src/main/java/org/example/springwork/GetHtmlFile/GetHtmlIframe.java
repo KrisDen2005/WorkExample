@@ -1,17 +1,23 @@
-package GetHtmlFile;
+package org.example.springwork.GetHtmlFile;
 
-import GetHtmlFile.File.FileList;
+import org.example.springwork.GetHtmlFile.File.FileList;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import pojo.IframeBean;
+import org.example.springwork.pojo.IframeBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+@Component
 public class GetHtmlIframe {
+   @Autowired
     private IframeBean iframeBean;
+   @Autowired
+   private  FileList fileList;
 
     public List<Element> getHtml(String path) throws IOException {
         File htmlfile = new File(path);
@@ -57,7 +63,6 @@ public class GetHtmlIframe {
 
 
     }
-
     public static void main(String[] args) throws IOException {
         FileList fileList = new FileList();
         GetHtmlIframe getHtmlIframe = new GetHtmlIframe();
@@ -65,10 +70,24 @@ public class GetHtmlIframe {
         for (String path : xhtmlFile) {
             List<IframeBean> xhtmlAttribute = getHtmlIframe.getXhtmlAttribute(path);
             for (IframeBean iframeBean : xhtmlAttribute) {
-                System.out.println(iframeBean.toString());
+                System.out.println(iframeBean);
             }
         }
 
+
+    }
+    public  List <IframeBean> getIframeBeans(String targetpath) throws IOException {
+        FileList fileList = new FileList();
+        GetHtmlIframe getHtmlIframe = new GetHtmlIframe();
+        List<String> xhtmlFile = fileList.getXhtmlFile(targetpath);
+        List<IframeBean> iframeBeans = new ArrayList<>();
+        for (String path : xhtmlFile) {
+            List<IframeBean> xhtmlAttribute = getHtmlIframe.getXhtmlAttribute(path);
+            for (IframeBean iframeBean : xhtmlAttribute) {
+               iframeBeans.add(iframeBean);
+            }
+        }
+        return iframeBeans;
 
     }
 }

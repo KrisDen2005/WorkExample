@@ -1,11 +1,13 @@
-package GetHtmlFile.File;
+package org.example.springwork.GetHtmlFile.File;
 
 
+
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class FileList {
 
     public File[] getFile(String path) {

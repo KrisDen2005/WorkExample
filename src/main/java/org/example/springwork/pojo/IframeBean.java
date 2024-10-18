@@ -1,11 +1,14 @@
-package pojo;
+package org.example.springwork.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Component
 public class IframeBean {
     private   String data_chaucer_element_id;
     private  String Clas;
@@ -21,6 +24,4 @@ public class IframeBean {
     private  String data_offlinesupport;
     private  String data_fflinesupport;
     private  String resource;
-
-
 }
